@@ -1,0 +1,9 @@
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\bin\Debug\Factorials.exe.config
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.csprojResolveAssemblyReference.cache
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.FormFact.resources
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.Properties.Resources.resources
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.csproj.GenerateResource.Cache
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\bin\Debug\Factorials.exe
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\bin\Debug\Factorials.pdb
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.exe
+c:\users\sergeychi\documents\visual studio 2012\Projects\Factorials\Factorials\obj\Debug\Factorials.pdb
