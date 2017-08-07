@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
+using System.Threading;
 
 namespace Factorials
 {
@@ -16,53 +17,112 @@ namespace Factorials
         public FormFact()
         {
             InitializeComponent();
+           
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public BigInteger number;
+        public string ResultString;
+
+        void FactorialIteration()
         {
-            richTextBoxResult.Text = "";
+            DateTime StartTime = DateTime.Now;
+            BigInteger Factorial = new System.Numerics.BigInteger();
+            Factorial = 1;
 
-            if (!String.IsNullOrWhiteSpace(richTextBoxNum.Text))
+            BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
+
+            for (i = 1; i <= number; i++)
             {
-                DateTime StartTime =  DateTime.Now;
-                try
-                {
-                    BigInteger number = BigInteger.Parse(richTextBoxNum.Text);
-
-                    BigInteger Factorial = new System.Numerics.BigInteger();
-                    Factorial = 1;
-
-                    BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
-
-                    for (i = 1; i <= number; i++)
-                    {
-                        Factorial = BigInteger.Multiply(Factorial, i);
-
-                    }
-
-                    DateTime EndTime = DateTime.Now;
-                    richTextBoxResult.Text += "Calculation time without Threading: " + (EndTime - StartTime).ToString("g") + Environment.NewLine;
-                        //Convert.ToString(EndTime - StartTime, "HH:mm:ss.fffff");
-                    richTextBoxResult.Text += Convert.ToString(Factorial);
-                }
-                catch (ArgumentException)
-                {
-                    richTextBoxResult.Text = "Incorrect data entry";
-                
-                }
-
-                catch (FormatException)
-                {
-                    richTextBoxResult.Text = "Incorrect data entry, FormatException";
-                }
-               
-                catch (System.OverflowException)
-                {
-                    richTextBoxResult.Text = "Incorrect data entry, OverflowException";
-                }
-
+                Factorial = BigInteger.Multiply(Factorial, i);
 
             }
+
+            DateTime EndTime = DateTime.Now;
+            ResultString += "Calculation time with Threading (iteration): " + (EndTime - StartTime).ToString("g") + Environment.NewLine;
+            //Convert.ToString(EndTime - StartTime, "HH:mm:ss.fffff");
+            // richTextBoxResult.Text += Convert.ToString(Factorial); //закомментим вывод числа
         }
+
+
+        void FactorialRecursion()
+        {
+            DateTime StartTimeRecursion = DateTime.Now;
+            
+
+            BigInteger FactorialRecursion = new System.Numerics.BigInteger();
+
+
+            BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
+
+            for (i = 1; i <= number; i++)
+            {
+                if (i == 1)
+                    FactorialRecursion = 1;
+                else
+                    FactorialRecursion *= i;
+
+            }
+
+            DateTime EndTimeRecursion = DateTime.Now;
+            ResultString += "Calculation time with Threading (recursion): " + (EndTimeRecursion - StartTimeRecursion).ToString("g") + Environment.NewLine;
+            //Convert.ToString(EndTime - StartTime, "HH:mm:ss.fffff");
+            //richTextBoxResult.Text += Convert.ToString(FactorialRecursion); //закомментим вывод числа
+        
+        }
+
+
+        
+
+        public void button1_Click(object sender, EventArgs e)
+        {
+            richTextBoxResult.Text = "";
+            ResultString = "";
+            DateTime StartTotal = DateTime.Now;
+            try
+            {
+                number = BigInteger.Parse(richTextBoxNum.Text);
+            }
+
+            catch (ArgumentException)
+            {
+                richTextBoxResult.Text = "Incorrect data entry";
+
+            }
+
+            catch (FormatException)
+            {
+                richTextBoxResult.Text = "Incorrect data entry, FormatException";
+            }
+
+            catch (System.OverflowException)
+            {
+                richTextBoxResult.Text = "Incorrect data entry, OverflowException";
+            }
+            
+            
+            
+            Thread thread1 = new Thread(FactorialIteration);
+            thread1.Start();
+            
+            Thread thread2 = new Thread(FactorialRecursion);
+            thread2.Start();
+
+
+            thread1.Join();
+            thread2.Join();
+
+            //thread1.Abort();
+            //thread2.Abort();
+            DateTime EndTotal = DateTime.Now;
+            richTextBoxResult.Text += ResultString + Environment.NewLine;
+            richTextBoxResult.Text += "Calculation time Total: " + (EndTotal - StartTotal).ToString("g");
+
+           
+           
+        }
+
+        
+
     }
 }
