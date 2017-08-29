@@ -19,7 +19,8 @@ namespace Factorials
             InitializeComponent();
         }
 
-        public BigInteger number;
+        public int number;
+        //public BigInteger number;
         public string ResultString;
 
         void FactorialIteration()
@@ -27,8 +28,9 @@ namespace Factorials
             DateTime StartTime = DateTime.Now;
             BigInteger Factorial = new System.Numerics.BigInteger();
             Factorial = 1;
-            BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
-            for (i = 1; i <= number; i++)
+            //BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
+            
+            for (int i = 1; i <= number; i++)
             {
                 Factorial = BigInteger.Multiply(Factorial, i);
             }
@@ -42,18 +44,37 @@ namespace Factorials
         {
             DateTime StartTimeRecursion = DateTime.Now;
             BigInteger FactorialRecursion = new System.Numerics.BigInteger();
-            BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
-            for (i = 1; i <= number; i++)
+           
+            //BigInteger i = new System.Numerics.BigInteger();//аккуратнее, в цикле используется ++, если будут ошибки заменить на BigInteger.Add(BigInt,BigInt)
+            if (checkBox_Recursion.Checked == true)
             {
-                if (i == 1)
-                    FactorialRecursion = 1;
-                else
-                    FactorialRecursion *= i;
+                FactorialRecursion = factorial(number);
             }
-
+            else
+            {
+                for (int i = 1; i <= number; i++)
+                {
+                    if (i == 1)
+                        FactorialRecursion = 1;
+                    else
+                        FactorialRecursion *= i;
+                }
+            }
             DateTime EndTimeRecursion = DateTime.Now;
             ResultString += "Calculation time with Threading (recursion): " + (EndTimeRecursion - StartTimeRecursion).ToString("g") + Environment.NewLine;
             //richTextBoxResult.Text += Convert.ToString(FactorialRecursion); //закомментим вывод числа
+        }
+
+
+        private static BigInteger factorial(int k) //static BigInteger factorial(BigInteger k)
+        {
+            //BigInteger result;
+            if (k > 1) return (factorial(k - 1) * k);
+            else return k;
+            //if (k == 1)
+            //    return 1;
+            //else return (factorial(k - 1)* k);
+            
         }
 
 
@@ -65,7 +86,7 @@ namespace Factorials
             DateTime StartTotal = DateTime.Now;
             try
             {
-                number = BigInteger.Parse(richTextBoxNum.Text);
+                number = int.Parse(richTextBoxNum.Text);
             }
             catch (ArgumentException)
             {

@@ -31,6 +31,7 @@
             this.richTextBoxNum = new System.Windows.Forms.RichTextBox();
             this.richTextBoxResult = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.checkBox_Recursion = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // richTextBoxNum
@@ -62,17 +63,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // checkBox_Recursion
+            // 
+            this.checkBox_Recursion.AutoSize = true;
+            this.checkBox_Recursion.Location = new System.Drawing.Point(168, 12);
+            this.checkBox_Recursion.Name = "checkBox_Recursion";
+            this.checkBox_Recursion.Size = new System.Drawing.Size(200, 17);
+            this.checkBox_Recursion.TabIndex = 3;
+            this.checkBox_Recursion.Text = "True Recursion  (no more than 1000)";
+            this.checkBox_Recursion.UseVisualStyleBackColor = true;
+            // 
             // FormFact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 607);
+            this.Controls.Add(this.checkBox_Recursion);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBoxResult);
             this.Controls.Add(this.richTextBoxNum);
             this.Name = "FormFact";
             this.Text = "Factorials";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -81,6 +94,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxNum;
         private System.Windows.Forms.RichTextBox richTextBoxResult;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox_Recursion;
     }
 }
 

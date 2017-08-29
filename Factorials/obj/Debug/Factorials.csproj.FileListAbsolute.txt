@@ -16,3 +16,6 @@ G:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.csprojResolveAssemblyRefer
 G:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.FormFact.resources
 G:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.Properties.Resources.resources
 G:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.csproj.GenerateResource.Cache
+O:\C_Sharp\Factorials\Factorials\bin\Debug\Factorials.exe.config
+O:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.exe
+O:\C_Sharp\Factorials\Factorials\obj\Debug\Factorials.pdb
